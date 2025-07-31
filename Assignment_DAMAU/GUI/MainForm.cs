@@ -44,14 +44,6 @@ namespace Assignment_DAMAU.GUI
             TacGia tacGia = new TacGia();
             tacGia.Show();
         }
-
-        private void btnChiTiet_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            ChiTiet chiTiet = new ChiTiet();
-            chiTiet.Show();
-        }
-
         private void btnVoucher_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -70,14 +62,6 @@ namespace Assignment_DAMAU.GUI
         {
             Application.Exit();
         }
-
-        private void btnBanHang_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            BanHang taoHoaDon = new BanHang();
-            taoHoaDon.Show();
-        }
-
         private void btnHoaDon_Click(object sender, EventArgs e)
         {
             this.Close();

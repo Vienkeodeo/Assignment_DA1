@@ -118,13 +118,6 @@ namespace Assignment_DAMAU.GUI
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            BanHang bh = new BanHang();
-            bh.Show();
-
-        }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
