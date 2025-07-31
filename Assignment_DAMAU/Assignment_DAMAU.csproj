@@ -116,12 +116,6 @@
     <Compile Include="GUI\BookForm.Designer.cs">
       <DependentUpon>BookForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\ChiTiet.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\ChiTiet.Designer.cs">
-      <DependentUpon>ChiTiet.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\HoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,12 +158,6 @@
     <Compile Include="GUI\TacGia.Designer.cs">
       <DependentUpon>TacGia.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\BanHang.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\BanHang.Designer.cs">
-      <DependentUpon>BanHang.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Voucher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,9 +168,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\BookForm.resx">
       <DependentUpon>BookForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\ChiTiet.resx">
-      <DependentUpon>ChiTiet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\HoaDon.resx">
       <DependentUpon>HoaDon.cs</DependentUpon>
@@ -204,9 +189,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TacGia.resx">
       <DependentUpon>TacGia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\BanHang.resx">
-      <DependentUpon>BanHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Voucher.resx">
       <DependentUpon>Voucher.cs</DependentUpon>
