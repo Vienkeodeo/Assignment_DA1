@@ -39,6 +39,7 @@
             this.btnNhanVien = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.btnThongKe = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +58,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnThongKe);
             this.groupBox1.Controls.Add(this.btnHoaDon);
             this.groupBox1.Controls.Add(this.btnNXB);
             this.groupBox1.Controls.Add(this.btnVoucher);
@@ -173,6 +175,17 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // btnThongKe
+            // 
+            this.btnThongKe.Location = new System.Drawing.Point(319, 294);
+            this.btnThongKe.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThongKe.Name = "btnThongKe";
+            this.btnThongKe.Size = new System.Drawing.Size(185, 79);
+            this.btnThongKe.TabIndex = 9;
+            this.btnThongKe.Text = "Thống kê";
+            this.btnThongKe.UseVisualStyleBackColor = true;
+            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -205,5 +218,6 @@
         private System.Windows.Forms.Button btnNXB;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnThongKe;
     }
 }

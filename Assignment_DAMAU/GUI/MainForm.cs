@@ -89,5 +89,12 @@ namespace Assignment_DAMAU.GUI
             Login loginForm = new Login();
             loginForm.Show();
         }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            ThongKe tk = new ThongKe();
+            tk.Show();
+        }
     }
 }
