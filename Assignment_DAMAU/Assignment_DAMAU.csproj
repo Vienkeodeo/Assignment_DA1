@@ -236,6 +236,12 @@
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\NhaCungCap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\NhaCungCap.Designer.cs">
+      <DependentUpon>NhaCungCap.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\NhanVienForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\NhaCungCap.resx">
+      <DependentUpon>NhaCungCap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\NhanVienForm.resx">
       <DependentUpon>NhanVienForm.cs</DependentUpon>

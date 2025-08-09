@@ -181,20 +181,20 @@ namespace Assignment_DAMAU.GUI
                         maKH = "0000";
                     }
 
-                    // 2. Tạo hóa đơn
                     HOADON hd = new HOADON
                     {
                         MA_HOADON = TaoMaHoaDonTuDong(),
                         MA_KHACHHANG = maKH,
                         MA_NV = cboNhanVien.SelectedValue.ToString(),
                         NGAYLAP = DateTime.Now,
+                        MA_KHUYENMAI = cboKhuyenMai.SelectedValue.ToString(),
                         TRANGTHAI = true,
-                        TONGTIEN = decimal.Parse(txtTongTien.Text.Replace(",", "").Replace(".", "").Replace(" đ", "").Trim())
+                        TONGTIEN = decimal.Parse(txtTongTien.Text.ToString()),
                     };
                     db.HOADONs.Add(hd);
                     db.SaveChanges();
 
-                    // 3. Thêm chi tiết hóa đơn và cập nhật tồn kho
+
                     foreach (var item in gioHang)
                     {
                         HOADONCHITIET ct = new HOADONCHITIET

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment_DAMAU.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -106,6 +107,13 @@ namespace Assignment_DAMAU.GUI
             this.Close();
             BanHang bh = new BanHang();
             bh.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            NhaCungCap cc = new NhaCungCap();
+            cc.Show();
         }
     }
 }

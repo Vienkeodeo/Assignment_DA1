@@ -53,7 +53,8 @@ namespace Assignment_DAMAU.GUI
                                        TENNHANVIEN = s.NHANVIEN.HO + " " + s.NHANVIEN.TEN,
                                        TRANGTHAI = (s.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán",
                                        TENKHACHHANG = s.KHACHHANG.HOTEN,
-                                       TONGTIEN = s.TONGTIEN
+                                       s.KHUYENMAI.TEN_KHUYENMAI,
+                                       s.TONGTIEN
                                    }).ToList();
 
             cboMaSach.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -76,9 +77,41 @@ namespace Assignment_DAMAU.GUI
                 cboNhanVien.SelectedValue = hd.MA_NV;
                 txtTrangThai.Text = (hd.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán";
                 txtmahoadon.Text = maHD;
+                if (hd.KHUYENMAI == null)
+                {
+                    txtVoucher.Text = "";
+                }
+                else
+                {
+                    txtVoucher.Text = hd.KHUYENMAI.TEN_KHUYENMAI.ToString();
+                }
+
                 txtTongTien.Text = hd.TONGTIEN.ToString();
                 txtTenKH.Text = hd.KHACHHANG.HOTEN;
                 txtSDTKhach.Text = hd.KHACHHANG.SDT;
+
+                var gioHang = db.HOADONCHITIETs
+                .Include(x => x.HOADON)
+                .Include(x => x.SACH)
+                .Where(s => s.MA_HOADON == maHD)
+                .Select(s => new
+                {
+                    s.HOADON.MA_HOADON,
+                    s.SACH.TEN_SACH,
+                    s.SOLUONG,
+                    s.SACH.GIA,
+                    THANHTIEN = s.DONGIA
+                }).ToList();
+
+                dgvGioHang.DataSource = gioHang;
+
+                // Tính tổng tiền gốc từ giỏ hàng
+                decimal tongGioHang = decimal.Parse(gioHang.Sum(item => item.THANHTIEN).ToString());
+
+                // Tính tiền đã giảm
+                decimal daGiam = (tongGioHang -decimal.Parse(hd.TONGTIEN.ToString().ToString()));
+                txtDaGiam.Text = daGiam.ToString("N0");
+
 
                 dgvGioHang.DataSource = db.HOADONCHITIETs.Include(x => x.HOADON)
                 .Include(x => x.SACH).Where(s => s.MA_HOADON == maHD).Select(s => new
@@ -89,6 +122,7 @@ namespace Assignment_DAMAU.GUI
                     s.SACH.GIA,
                     THANHTIEN = s.DONGIA 
                 }).ToList();
+
             }
         }
         private void Xoa()
@@ -188,6 +222,7 @@ namespace Assignment_DAMAU.GUI
                     TENNHANVIEN = s.NHANVIEN.HO + " " + s.NHANVIEN.TEN,
                     TRANGTHAI = (s.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán",
                     TENKHACHHANG = s.KHACHHANG.HOTEN,
+                    TENKHUYENMAI = s.KHUYENMAI.TEN_KHUYENMAI,
                     TONGTIEN = s.TONGTIEN
                 }).ToList();
 
@@ -234,7 +269,7 @@ namespace Assignment_DAMAU.GUI
             LocHoaDonTheoKhoangNgay(tuNgay, denNgay);
         }
 
-        private void cboNhanVien_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboNhanVien_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (cboNhanVien.SelectedValue == null || cboNhanVien.SelectedIndex == -1)
                 return;
@@ -253,6 +288,7 @@ namespace Assignment_DAMAU.GUI
                     TENNHANVIEN = h.NHANVIEN.HO + " " + h.NHANVIEN.TEN,
                     TRANGTHAI = (h.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán",
                     TENKHACHHANG = h.KHACHHANG.HOTEN,
+                    TENKHUYENMAI = h.KHUYENMAI.TEN_KHUYENMAI,
                     TONGTIEN = h.TONGTIEN
                 }).ToList();
 

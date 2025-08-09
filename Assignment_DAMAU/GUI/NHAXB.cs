@@ -21,7 +21,13 @@ namespace Assignment_DAMAU.GUI
         }
         public void LoadData()
         {
-            var dsNXB = db.NXBs.ToList();
+            var dsNXB = db.NXBs.Select(x => new
+            {
+                x.MA_NXB,
+                x.TEN_NXB,
+                x.EMAIL,
+                x.SDT
+            }).ToList();
             dgvDanhSach.DataSource = dsNXB;
         }
         public void Xoa()
