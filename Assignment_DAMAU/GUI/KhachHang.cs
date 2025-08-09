@@ -139,8 +139,22 @@ namespace Assignment_DAMAU.GUI
                 txtMa.Text = row.Cells["MA_KHACHHANG"].Value.ToString();
                 txtTen.Text = row.Cells["HOTEN"].Value.ToString();
                 txtSDT.Text = row.Cells["SDT"].Value.ToString();
-                txtEmail.Text = row.Cells["EMAIL"].Value.ToString();
-                txtDiaChi.Text = row.Cells["DIACHI"].Value.ToString();
+                if (row.Cells["EMAIL"].Value != null)
+                {
+                    txtEmail.Text = row.Cells["EMAIL"].Value.ToString();
+                }
+                else
+                {
+                    txtEmail.Text = ""; // hoặc gán giá trị mặc định
+                }
+                if (row.Cells["DIACHI"].Value != null)
+                {
+                    txtDiaChi.Text = row.Cells["DIACHI"].Value.ToString();
+                }
+                else
+                {
+                    txtDiaChi.Text = "";
+                }
             }
         }
 

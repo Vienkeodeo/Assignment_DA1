@@ -79,7 +79,11 @@ namespace Assignment_DAMAU.GUI
                 btnTacGia.Enabled = false;
                 btnVoucher.Enabled = false;
                 btnNXB.Enabled = false;
-                btnTacGia.Enabled = false;           
+                btnTacGia.Enabled = false;   
+                btnHoaDon.Enabled = false;
+                btnSach.Enabled = false;
+                btnKhachHang.Enabled = false;
+                btnThongKe.Enabled = false;
             }
         }
 
@@ -95,6 +99,13 @@ namespace Assignment_DAMAU.GUI
             this.Close();
             ThongKe tk = new ThongKe();
             tk.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            BanHang bh = new BanHang();
+            bh.Show();
         }
     }
 }
