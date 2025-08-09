@@ -32,11 +32,13 @@
             this.btnThoat = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cartesianChart1 = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
+            this.cboThongKe = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBack
             // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBack.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnBack.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBack.Location = new System.Drawing.Point(999, 13);
@@ -50,6 +52,7 @@
             // 
             // btnThoat
             // 
+            this.btnThoat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThoat.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnThoat.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnThoat.Location = new System.Drawing.Point(1150, 13);
@@ -82,11 +85,27 @@
             this.cartesianChart1.Size = new System.Drawing.Size(1285, 556);
             this.cartesianChart1.TabIndex = 0;
             // 
+            // cboThongKe
+            // 
+            this.cboThongKe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboThongKe.FormattingEnabled = true;
+            this.cboThongKe.Items.AddRange(new object[] {
+            "Số lượng hoá đơn",
+            "Doanh thu",
+            "Số lượng sách đã bán"});
+            this.cboThongKe.Location = new System.Drawing.Point(770, 23);
+            this.cboThongKe.Name = "cboThongKe";
+            this.cboThongKe.Size = new System.Drawing.Size(203, 24);
+            this.cboThongKe.TabIndex = 20;
+            this.cboThongKe.Text = "`";
+            this.cboThongKe.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // ThongKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1291, 734);
+            this.Controls.Add(this.cboThongKe);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnThoat);
@@ -103,5 +122,6 @@
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.GroupBox groupBox1;
         private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart cartesianChart1;
+        private System.Windows.Forms.ComboBox cboThongKe;
     }
 }

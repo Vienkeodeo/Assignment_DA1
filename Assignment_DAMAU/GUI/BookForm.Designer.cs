@@ -40,6 +40,8 @@
             this.grbBang = new System.Windows.Forms.GroupBox();
             this.dgvDanhSach = new System.Windows.Forms.DataGridView();
             this.grbThongTin = new System.Windows.Forms.GroupBox();
+            this.txtDuongDanAnh = new System.Windows.Forms.TextBox();
+            this.btnChonAnh = new System.Windows.Forms.Button();
             this.cboNCC = new System.Windows.Forms.ComboBox();
             this.cboNXB = new System.Windows.Forms.ComboBox();
             this.txtSoLuongTon = new System.Windows.Forms.TextBox();
@@ -56,8 +58,6 @@
             this.lblMa = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.pbAnhSach = new System.Windows.Forms.PictureBox();
-            this.btnChonAnh = new System.Windows.Forms.Button();
-            this.txtDuongDanAnh = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grbBang.SuspendLayout();
@@ -187,11 +187,12 @@
             // 
             this.dgvDanhSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDanhSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDanhSach.Location = new System.Drawing.Point(8, 23);
+            this.dgvDanhSach.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvDanhSach.Location = new System.Drawing.Point(4, 28);
             this.dgvDanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgvDanhSach.Name = "dgvDanhSach";
             this.dgvDanhSach.RowHeadersWidth = 51;
-            this.dgvDanhSach.Size = new System.Drawing.Size(953, 309);
+            this.dgvDanhSach.Size = new System.Drawing.Size(961, 309);
             this.dgvDanhSach.TabIndex = 0;
             this.dgvDanhSach.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSach_CellClick);
             // 
@@ -221,6 +222,25 @@
             this.grbThongTin.TabIndex = 11;
             this.grbThongTin.TabStop = false;
             this.grbThongTin.Text = "Thông tin sách";
+            // 
+            // txtDuongDanAnh
+            // 
+            this.txtDuongDanAnh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDuongDanAnh.Location = new System.Drawing.Point(615, 193);
+            this.txtDuongDanAnh.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDuongDanAnh.Name = "txtDuongDanAnh";
+            this.txtDuongDanAnh.Size = new System.Drawing.Size(161, 22);
+            this.txtDuongDanAnh.TabIndex = 18;
+            // 
+            // btnChonAnh
+            // 
+            this.btnChonAnh.Location = new System.Drawing.Point(489, 190);
+            this.btnChonAnh.Name = "btnChonAnh";
+            this.btnChonAnh.Size = new System.Drawing.Size(93, 27);
+            this.btnChonAnh.TabIndex = 17;
+            this.btnChonAnh.Text = "Chọn ảnh ";
+            this.btnChonAnh.UseVisualStyleBackColor = true;
+            this.btnChonAnh.Click += new System.EventHandler(this.btnChonAnh_Click);
             // 
             // cboNCC
             // 
@@ -276,6 +296,7 @@
             this.txtTenSach.Name = "txtTenSach";
             this.txtTenSach.Size = new System.Drawing.Size(161, 22);
             this.txtTenSach.TabIndex = 8;
+            this.txtTenSach.TextChanged += new System.EventHandler(this.txtTenSach_TextChanged);
             // 
             // txtGia
             // 
@@ -370,31 +391,12 @@
             // 
             // pbAnhSach
             // 
-            this.pbAnhSach.Location = new System.Drawing.Point(1107, 354);
+            this.pbAnhSach.Location = new System.Drawing.Point(1107, 359);
             this.pbAnhSach.Name = "pbAnhSach";
             this.pbAnhSach.Size = new System.Drawing.Size(375, 309);
             this.pbAnhSach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbAnhSach.TabIndex = 17;
             this.pbAnhSach.TabStop = false;
-            // 
-            // btnChonAnh
-            // 
-            this.btnChonAnh.Location = new System.Drawing.Point(489, 190);
-            this.btnChonAnh.Name = "btnChonAnh";
-            this.btnChonAnh.Size = new System.Drawing.Size(93, 27);
-            this.btnChonAnh.TabIndex = 17;
-            this.btnChonAnh.Text = "Chọn ảnh ";
-            this.btnChonAnh.UseVisualStyleBackColor = true;
-            this.btnChonAnh.Click += new System.EventHandler(this.btnChonAnh_Click);
-            // 
-            // txtDuongDanAnh
-            // 
-            this.txtDuongDanAnh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDuongDanAnh.Location = new System.Drawing.Point(615, 193);
-            this.txtDuongDanAnh.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDuongDanAnh.Name = "txtDuongDanAnh";
-            this.txtDuongDanAnh.Size = new System.Drawing.Size(161, 22);
-            this.txtDuongDanAnh.TabIndex = 18;
             // 
             // BookForm
             // 

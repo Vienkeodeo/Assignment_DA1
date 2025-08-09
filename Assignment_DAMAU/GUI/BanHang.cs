@@ -127,51 +127,6 @@ namespace Assignment_DAMAU.GUI
             if (confirm != DialogResult.Yes)
                 return;
 
-            string sdt = txtSDT.Text.Trim();
-            var khach = db.KHACHHANGs.FirstOrDefault(k => k.SDT == sdt);
-            string maKH;
-            string tenKH = txtTenKH.Text.Trim();
-
-            if (!string.IsNullOrEmpty(sdt) && sdt.Length >= 3)
-            {
-                // Tìm khách theo SDT
-                var khachhang = db.KHACHHANGs.FirstOrDefault(k => k.SDT == sdt);
-
-                if (khachhang != null)
-                {
-                    // Khách đã tồn tại
-                    maKH = khach.MA_KHACHHANG;
-                }
-                else
-                {
-                    // Tạo mã khách theo 3 số cuối SDT
-                    maKH = "KH" + sdt.Substring(sdt.Length - 3);
-
-                    // Tránh trùng mã
-                    int count = 1;
-                    string originalMaKH = maKH;
-                    while (db.KHACHHANGs.Any(k => k.MA_KHACHHANG == maKH))
-                    {
-                        maKH = originalMaKH + count.ToString();
-                        count++;
-                    }
-
-                    // Thêm khách hàng mới
-                    KHACHHANG newKH = new KHACHHANG
-                    {
-                        MA_KHACHHANG = maKH,
-                        HOTEN = tenKH,
-                        SDT = sdt
-                    };
-                    db.KHACHHANGs.Add(newKH);
-                    db.SaveChanges();
-                    MessageBox.Show("Đã thêm khách hàng mới");
-                }
-            }
-            else
-            {
-                maKH = "0000";
-            }
             if (gioHang.Count == 0)
             {
                 MessageBox.Show("Giỏ hàng đang trống.");
@@ -183,35 +138,95 @@ namespace Assignment_DAMAU.GUI
                 return;
             }
 
-            HOADON hd = new HOADON();
-            hd.MA_HOADON = TaoMaHoaDonTuDong();
-            hd.MA_KHACHHANG = maKH;
-            hd.MA_NV = cboNhanVien.SelectedValue.ToString();
-            hd.NGAYLAP = DateTime.Now;
-            hd.TRANGTHAI = true;
-            decimal tongTien = decimal.Parse(txtTongTien.Text.Replace(",", "").Replace(".", "").Replace(" đ", "").Trim());
-            hd.TONGTIEN = tongTien;
-            db.HOADONs.Add(hd);
-            db.SaveChanges();
-
-            // Thêm chi tiết hóa đơn
-            foreach (var item in gioHang)
+            using (var transaction = db.Database.BeginTransaction())
             {
-                HOADONCHITIET ct = new HOADONCHITIET();
-                ct.MA_HOADON = hd.MA_HOADON;
-                ct.MA_SACH = item.MA_SACH;
-                ct.SOLUONG = item.SOLUONG;
-                ct.DONGIA = item.GIA * item.SOLUONG;
-                db.HOADONCHITIETs.Add(ct);
+                try
+                {
+                    string sdt = txtSDT.Text.Trim();
+                    string tenKH = txtTenKH.Text.Trim();
+                    string maKH;
 
-                // Trừ tồn kho
-                var sach = db.SACHes.Find(item.MA_SACH);
-                sach.SOLUONGTON -= item.SOLUONG;
+                    // 1. Xử lý khách hàng
+                    if (!string.IsNullOrEmpty(sdt) && sdt.Length >= 3)
+                    {
+                        var khach = db.KHACHHANGs.FirstOrDefault(k => k.SDT == sdt);
+                        if (khach != null)
+                        {
+                            maKH = khach.MA_KHACHHANG;
+                        }
+                        else
+                        {
+                            maKH = "KH" + sdt.Substring(sdt.Length - 3);
+                            int count = 1;
+                            string originalMaKH = maKH;
+                            while (db.KHACHHANGs.Any(k => k.MA_KHACHHANG == maKH))
+                            {
+                                maKH = originalMaKH + count.ToString();
+                                count++;
+                            }
+
+                            KHACHHANG newKH = new KHACHHANG
+                            {
+                                MA_KHACHHANG = maKH,
+                                HOTEN = tenKH,
+                                SDT = sdt
+                            };
+                            db.KHACHHANGs.Add(newKH);
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        // Khách vãng lai
+                        maKH = "0000";
+                    }
+
+                    // 2. Tạo hóa đơn
+                    HOADON hd = new HOADON
+                    {
+                        MA_HOADON = TaoMaHoaDonTuDong(),
+                        MA_KHACHHANG = maKH,
+                        MA_NV = cboNhanVien.SelectedValue.ToString(),
+                        NGAYLAP = DateTime.Now,
+                        TRANGTHAI = true,
+                        TONGTIEN = decimal.Parse(txtTongTien.Text.Replace(",", "").Replace(".", "").Replace(" đ", "").Trim())
+                    };
+                    db.HOADONs.Add(hd);
+                    db.SaveChanges();
+
+                    // 3. Thêm chi tiết hóa đơn và cập nhật tồn kho
+                    foreach (var item in gioHang)
+                    {
+                        HOADONCHITIET ct = new HOADONCHITIET
+                        {
+                            MA_HOADON = hd.MA_HOADON,
+                            MA_SACH = item.MA_SACH,
+                            SOLUONG = item.SOLUONG,
+                            DONGIA = item.GIA * item.SOLUONG
+                        };
+                        db.HOADONCHITIETs.Add(ct);
+
+                        var sach = db.SACHes.Find(item.MA_SACH);
+                        if (sach == null)
+                            throw new Exception("Sách không tồn tại: " + item.MA_SACH);
+                        if (sach.SOLUONGTON < item.SOLUONG)
+                            throw new Exception("Sách '" + sach.TEN_SACH + "' không đủ số lượng tồn.");
+
+                        sach.SOLUONGTON -= item.SOLUONG;
+                    }
+
+                    db.SaveChanges();
+                    transaction.Commit();
+
+                    MessageBox.Show("Thanh toán thành công!");
+                    LamMoiForm();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("Thanh toán thất bại: " + ex.Message);
+                }
             }
-
-            db.SaveChanges();
-            MessageBox.Show("Thanh toán thành công!");
-            LamMoiForm();
         }
         private string TaoMaHoaDonTuDong()
         {

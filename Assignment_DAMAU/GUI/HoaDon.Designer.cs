@@ -78,9 +78,10 @@
             // 
             // btnThoat
             // 
+            this.btnThoat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThoat.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnThoat.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnThoat.Location = new System.Drawing.Point(1662, 893);
+            this.btnThoat.Location = new System.Drawing.Point(1630, 865);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(128, 94);
@@ -95,7 +96,7 @@
             this.grbBang.Controls.Add(this.dtpDenNgay);
             this.grbBang.Controls.Add(this.dtpTuNgay);
             this.grbBang.Controls.Add(this.dgvDanhSach);
-            this.grbBang.Location = new System.Drawing.Point(45, 366);
+            this.grbBang.Location = new System.Drawing.Point(13, 338);
             this.grbBang.Margin = new System.Windows.Forms.Padding(4);
             this.grbBang.Name = "grbBang";
             this.grbBang.Padding = new System.Windows.Forms.Padding(4);
@@ -147,7 +148,7 @@
             this.groupBox2.Controls.Add(this.txtTenKH);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txtSDTKhach);
-            this.groupBox2.Location = new System.Drawing.Point(46, 243);
+            this.groupBox2.Location = new System.Drawing.Point(14, 215);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(772, 116);
             this.groupBox2.TabIndex = 30;
@@ -203,7 +204,7 @@
             this.grbThongTin.Controls.Add(this.label2);
             this.grbThongTin.Controls.Add(this.label1);
             this.grbThongTin.Controls.Add(this.lblMa);
-            this.grbThongTin.Location = new System.Drawing.Point(45, 41);
+            this.grbThongTin.Location = new System.Drawing.Point(13, 13);
             this.grbThongTin.Margin = new System.Windows.Forms.Padding(4);
             this.grbThongTin.Name = "grbThongTin";
             this.grbThongTin.Padding = new System.Windows.Forms.Padding(4);
@@ -311,9 +312,10 @@
             // 
             // btnTroLai
             // 
+            this.btnTroLai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTroLai.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnTroLai.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnTroLai.Location = new System.Drawing.Point(1525, 893);
+            this.btnTroLai.Location = new System.Drawing.Point(1493, 865);
             this.btnTroLai.Margin = new System.Windows.Forms.Padding(4);
             this.btnTroLai.Name = "btnTroLai";
             this.btnTroLai.Size = new System.Drawing.Size(128, 94);
@@ -324,8 +326,9 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.dgvGioHang);
-            this.groupBox4.Location = new System.Drawing.Point(825, 244);
+            this.groupBox4.Location = new System.Drawing.Point(793, 216);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
@@ -349,6 +352,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.txtmahoadon);
             this.groupBox5.Controls.Add(this.cboMaSach);
             this.groupBox5.Controls.Add(this.txtDonGia);
@@ -357,7 +362,7 @@
             this.groupBox5.Controls.Add(this.lblTheLoai);
             this.groupBox5.Controls.Add(this.lblTen);
             this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Location = new System.Drawing.Point(825, 41);
+            this.groupBox5.Location = new System.Drawing.Point(793, 13);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
@@ -480,10 +485,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.btnLamMoi);
             this.groupBox1.Controls.Add(this.btnXoa);
             this.groupBox1.Controls.Add(this.btnCapNhat);
-            this.groupBox1.Location = new System.Drawing.Point(49, 895);
+            this.groupBox1.Location = new System.Drawing.Point(17, 867);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -496,7 +502,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1807, 1015);
+            this.ClientSize = new System.Drawing.Size(1776, 973);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);

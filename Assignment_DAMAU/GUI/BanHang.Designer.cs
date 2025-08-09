@@ -32,10 +32,12 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvGioHang = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtSoTienGiam = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnDel = new System.Windows.Forms.Button();
-            this.btnThemVaoGio = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cboKhuyenMai = new System.Windows.Forms.ComboBox();
+            this.btnThemVaoGio = new System.Windows.Forms.Button();
             this.cboSach = new System.Windows.Forms.ComboBox();
             this.txtSoLuong = new System.Windows.Forms.TextBox();
             this.lblTheLoai = new System.Windows.Forms.Label();
@@ -49,12 +51,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtSDT = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.cboNhanVien = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtSoTienGiam = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGioHang)).BeginInit();
@@ -65,6 +65,7 @@
             // 
             // btnThanhToan
             // 
+            this.btnThanhToan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThanhToan.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnThanhToan.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnThanhToan.Location = new System.Drawing.Point(1110, 174);
@@ -79,11 +80,12 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.dgvGioHang);
-            this.groupBox4.Location = new System.Drawing.Point(16, 271);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox4.Location = new System.Drawing.Point(0, 288);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(1631, 576);
+            this.groupBox4.Size = new System.Drawing.Size(1665, 576);
             this.groupBox4.TabIndex = 37;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Giỏ hàng";
@@ -97,7 +99,7 @@
             this.dgvGioHang.Margin = new System.Windows.Forms.Padding(4);
             this.dgvGioHang.Name = "dgvGioHang";
             this.dgvGioHang.RowHeadersWidth = 51;
-            this.dgvGioHang.Size = new System.Drawing.Size(1623, 549);
+            this.dgvGioHang.Size = new System.Drawing.Size(1657, 549);
             this.dgvGioHang.TabIndex = 0;
             // 
             // groupBox5
@@ -121,6 +123,25 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Thông tin hóa đơn chi tiết";
             // 
+            // txtSoTienGiam
+            // 
+            this.txtSoTienGiam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSoTienGiam.Location = new System.Drawing.Point(433, 98);
+            this.txtSoTienGiam.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSoTienGiam.Name = "txtSoTienGiam";
+            this.txtSoTienGiam.Size = new System.Drawing.Size(161, 22);
+            this.txtSoTienGiam.TabIndex = 38;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(331, 100);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 16);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "Số tiền giảm";
+            // 
             // btnDel
             // 
             this.btnDel.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -132,18 +153,6 @@
             this.btnDel.Text = "Xoá";
             this.btnDel.UseVisualStyleBackColor = false;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // btnThemVaoGio
-            // 
-            this.btnThemVaoGio.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnThemVaoGio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnThemVaoGio.Location = new System.Drawing.Point(627, 63);
-            this.btnThemVaoGio.Name = "btnThemVaoGio";
-            this.btnThemVaoGio.Size = new System.Drawing.Size(161, 36);
-            this.btnThemVaoGio.TabIndex = 33;
-            this.btnThemVaoGio.Text = "Thêm";
-            this.btnThemVaoGio.UseVisualStyleBackColor = false;
-            this.btnThemVaoGio.Click += new System.EventHandler(this.btnThemVaoGio_Click);
             // 
             // label5
             // 
@@ -164,6 +173,18 @@
             this.cboKhuyenMai.Size = new System.Drawing.Size(160, 24);
             this.cboKhuyenMai.TabIndex = 26;
             this.cboKhuyenMai.SelectedIndexChanged += new System.EventHandler(this.cboKhuyenMai_SelectedIndexChanged);
+            // 
+            // btnThemVaoGio
+            // 
+            this.btnThemVaoGio.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnThemVaoGio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnThemVaoGio.Location = new System.Drawing.Point(627, 63);
+            this.btnThemVaoGio.Name = "btnThemVaoGio";
+            this.btnThemVaoGio.Size = new System.Drawing.Size(161, 36);
+            this.btnThemVaoGio.TabIndex = 33;
+            this.btnThemVaoGio.Text = "Thêm";
+            this.btnThemVaoGio.UseVisualStyleBackColor = false;
+            this.btnThemVaoGio.Click += new System.EventHandler(this.btnThemVaoGio_Click);
             // 
             // cboSach
             // 
@@ -206,8 +227,9 @@
             // 
             // btnTroLai
             // 
-            this.btnTroLai.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnTroLai.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnTroLai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTroLai.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnTroLai.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnTroLai.Location = new System.Drawing.Point(1382, 174);
             this.btnTroLai.Margin = new System.Windows.Forms.Padding(4);
             this.btnTroLai.Name = "btnTroLai";
@@ -219,8 +241,9 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnThoat.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnThoat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnThoat.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnThoat.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnThoat.Location = new System.Drawing.Point(1519, 174);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnThoat.Name = "btnThoat";
@@ -232,6 +255,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.btnThemKH);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtTenKH);
@@ -307,25 +331,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin hoá đơn";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 43);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 16);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Tổng tiền";
-            // 
-            // txtTongTien
-            // 
-            this.txtTongTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongTien.Location = new System.Drawing.Point(132, 41);
-            this.txtTongTien.Name = "txtTongTien";
-            this.txtTongTien.ReadOnly = true;
-            this.txtTongTien.Size = new System.Drawing.Size(160, 22);
-            this.txtTongTien.TabIndex = 17;
-            // 
             // cboNhanVien
             // 
             this.cboNhanVien.FormattingEnabled = true;
@@ -345,27 +350,28 @@
             this.label1.TabIndex = 42;
             this.label1.Text = "Tên nhân viên";
             // 
-            // txtSoTienGiam
+            // label2
             // 
-            this.txtSoTienGiam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSoTienGiam.Location = new System.Drawing.Point(433, 98);
-            this.txtSoTienGiam.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSoTienGiam.Name = "txtSoTienGiam";
-            this.txtSoTienGiam.Size = new System.Drawing.Size(161, 22);
-            this.txtSoTienGiam.TabIndex = 38;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(38, 43);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 16);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Tổng tiền";
             // 
-            // label6
+            // txtTongTien
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(331, 100);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 16);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "Số tiền giảm";
+            this.txtTongTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongTien.Location = new System.Drawing.Point(132, 41);
+            this.txtTongTien.Name = "txtTongTien";
+            this.txtTongTien.ReadOnly = true;
+            this.txtTongTien.Size = new System.Drawing.Size(160, 22);
+            this.txtTongTien.TabIndex = 17;
             // 
             // btnLamMoi
             // 
+            this.btnLamMoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLamMoi.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnLamMoi.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnLamMoi.Location = new System.Drawing.Point(1246, 174);

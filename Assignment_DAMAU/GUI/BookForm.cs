@@ -59,6 +59,15 @@ namespace Assignment_DAMAU.GUI
                                                   NHACUNGCAP = s.NHACUNGCAP.TEN_NHACUNGCAP
                                               }).ToList();
 
+            var sach = db.SACHes.ToList();
+            txtTenSach.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtTenSach.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            AutoCompleteStringCollection tenSachCollection = new AutoCompleteStringCollection();
+            tenSachCollection.AddRange(sach.Select(s => s.TEN_SACH).ToArray());
+
+            txtTenSach.AutoCompleteCustomSource = tenSachCollection;
+
             var dsTheLoai = db.THELOAIs.ToList();
             cboTheLoai.DataSource = dsTheLoai;
             cboTheLoai.DisplayMember = "TEN_THELOAI";
@@ -279,6 +288,37 @@ namespace Assignment_DAMAU.GUI
                 }
                 pbAnhSach.SizeMode = PictureBoxSizeMode.Zoom;
                 txtDuongDanAnh.Text = ofd.FileName; // Hiện đường dẫn ảnh
+            }
+        }
+
+        private void txtTenSach_TextChanged(object sender, EventArgs e)
+        {
+            string tenSach = txtTenSach.Text.Trim();
+
+            if (!string.IsNullOrEmpty(tenSach))
+            {
+                var sach = db.SACHes.FirstOrDefault(s => s.TEN_SACH == tenSach);
+                if (sach != null)
+                {
+                    txtMaSach.Text = sach.MA_SACH;
+                    txtGia.Text = sach.GIA.ToString();
+                    txtSoLuongTon.Text = sach.SOLUONGTON.ToString();
+
+                    cboTheLoai.SelectedValue = sach.MA_THELOAI;
+                    cboNXB.SelectedValue = sach.MA_NXB;
+                    cboNCC.SelectedValue = sach.MA_NHACUNGCAP;
+
+                    if (sach.ANH != null)
+                    {
+                        ByteArrayToImage(sach.ANH, pbAnhSach);
+                        txtDuongDanAnh.Text = "[Ảnh từ cơ sở dữ liệu]";
+                    }
+                    else
+                    {
+                        pbAnhSach.Image = null;
+                        txtDuongDanAnh.Clear();
+                    }
+                }
             }
         }
     }
