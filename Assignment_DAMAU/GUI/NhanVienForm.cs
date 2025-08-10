@@ -27,9 +27,13 @@ namespace Assignment_DAMAU.GUI
                                                      s.DIACHI,
                                                      s.SDT,
                                                      s.EMAIL,
-                                                     
                                                  }).ToList();
-
+            dgvDanhSach.Columns["MA_NV"].HeaderText = "Mã nhân viên";
+            dgvDanhSach.Columns["HovaTen"].HeaderText = "Họ tên";
+            dgvDanhSach.Columns["NGAYSINH"].HeaderText = "Ngày sinh";
+            dgvDanhSach.Columns["DIACHI"].HeaderText = "Địa chỉ";
+            dgvDanhSach.Columns["SDT"].HeaderText = "Số điện thoại";
+            dgvDanhSach.Columns["EMAIL"].HeaderText = "Email";
         }
 
         public NhanVienForm()

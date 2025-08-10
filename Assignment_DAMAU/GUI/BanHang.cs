@@ -31,8 +31,14 @@ namespace Assignment_DAMAU.GUI
             cboSach.ValueMember = "MA_SACH";
             cboSach.SelectedIndex = -1;
 
-            cboNhanVien.DataSource = db.NHANVIENs.ToList();
-            cboNhanVien.DisplayMember = "TEN";
+            cboNhanVien.DataSource = db.NHANVIENs
+                .Select(nv => new
+                {
+                    MA_NV = nv.MA_NV,
+                    HoTen = nv.HO + " " + nv.TEN
+                })
+                .ToList();
+            cboNhanVien.DisplayMember = "HoTen";
             cboNhanVien.ValueMember = "MA_NV";
             cboNhanVien.SelectedIndex = -1;
 
@@ -99,12 +105,20 @@ namespace Assignment_DAMAU.GUI
             dgvGioHang.DataSource = null;
             dgvGioHang.DataSource = gioHang.Select(g => new
             {
-                g.MA_SACH,
-                g.TEN_SACH,
-                g.SOLUONG,
-                g.GIA,
-                g.THANHTIEN
+                MaSach = g.MA_SACH,
+                TenSach = g.TEN_SACH,
+                SoLuong = g.SOLUONG,
+                Gia = g.GIA,
+                ThanhTien = g.THANHTIEN
             }).ToList();
+
+            // Đặt tên cột tiếng Việt
+            dgvGioHang.Columns["MaSach"].HeaderText = "Mã Sách";
+            dgvGioHang.Columns["TenSach"].HeaderText = "Tên Sách";
+            dgvGioHang.Columns["SoLuong"].HeaderText = "Số Lượng";
+            dgvGioHang.Columns["Gia"].HeaderText = "Giá";
+            dgvGioHang.Columns["ThanhTien"].HeaderText = "Thành Tiền";
+
 
             decimal tong = gioHang.Sum(x => x.THANHTIEN);
             int giam = LayPhanTramGiamGia();

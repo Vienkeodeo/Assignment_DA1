@@ -29,6 +29,10 @@ namespace Assignment_DAMAU.GUI
                 x.SDT
             }).ToList();
             dgvDanhSach.DataSource = dsNXB;
+
+            dgvDanhSach.Columns["MA_NXB"].HeaderText = "Mã NXB";
+            dgvDanhSach.Columns["TEN_NXB"].HeaderText = "Tên NXB";
+            dgvDanhSach.Columns["SDT"].HeaderText = "Số điện thoại";
         }
         public void Xoa()
         {

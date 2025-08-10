@@ -16,8 +16,20 @@ namespace Assignment_DAMAU.GUI
         SACHEntities3 db = new SACHEntities3();
         public void LoadData()
         {
-            var dsKhachHang = db.KHACHHANGs.ToList();
+            var dsKhachHang = db.KHACHHANGs.Select(k => new
+            {
+                k.MA_KHACHHANG,
+                k.HOTEN,
+                k.EMAIL,
+                k.SDT,
+                k.DIACHI,
+            }).ToList();
             dgvDanhSach.DataSource = dsKhachHang;
+            dgvDanhSach.Columns["MA_KHACHHANG"].HeaderText = "Mã khách hàng";
+            dgvDanhSach.Columns["HOTEN"].HeaderText = "Họ tên";
+            dgvDanhSach.Columns["EMAIL"].HeaderText = "Email";
+            dgvDanhSach.Columns["SDT"].HeaderText = "Số điện thoại";
+            dgvDanhSach.Columns["DIACHI"].HeaderText = "Địa chỉ";
         }
         public KhachHang()
         {

@@ -97,7 +97,6 @@
             this.cboThongKe.Name = "cboThongKe";
             this.cboThongKe.Size = new System.Drawing.Size(203, 24);
             this.cboThongKe.TabIndex = 20;
-            this.cboThongKe.Text = "`";
             this.cboThongKe.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // ThongKe

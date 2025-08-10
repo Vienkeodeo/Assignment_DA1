@@ -24,8 +24,15 @@ namespace Assignment_DAMAU.GUI
         public void LoadComboBox()
         {
 
-            cboNhanVien.DataSource = db.NHANVIENs.ToList();
-            cboNhanVien.DisplayMember = "TEN";
+            cboNhanVien.DataSource = db.NHANVIENs
+                .Select(nv => new
+                {
+                    MA_NV = nv.MA_NV,
+                    HoTen = nv.HO + " " + nv.TEN
+                })
+                .ToList();
+
+            cboNhanVien.DisplayMember = "HoTen";
             cboNhanVien.ValueMember = "MA_NV";
         }
         public void LoadData()
@@ -48,17 +55,25 @@ namespace Assignment_DAMAU.GUI
                                    .Include(s => s.KHUYENMAI)
                                    .Select(s => new
                                    {
-                                       s.MA_HOADON,
-                                       s.NGAYLAP,
-                                       TENNHANVIEN = s.NHANVIEN.HO + " " + s.NHANVIEN.TEN,
-                                       TRANGTHAI = (s.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán",
-                                       TENKHACHHANG = s.KHACHHANG.HOTEN,
-                                       s.KHUYENMAI.TEN_KHUYENMAI,
-                                       s.TONGTIEN
+                                       MaHoaDon = s.MA_HOADON,
+                                       NgayLap = s.NGAYLAP,
+                                       TenNhanVien = s.NHANVIEN.HO + " " + s.NHANVIEN.TEN,
+                                       TrangThai = (s.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán",
+                                       TenKhachHang = s.KHACHHANG.HOTEN,
+                                       TenKhuyenMai = s.KHUYENMAI.TEN_KHUYENMAI,
+                                       TongTien = s.TONGTIEN
                                    }).ToList();
 
             cboMaSach.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cboMaSach.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            dgvDanhSach.Columns["MaHoaDon"].HeaderText = "Mã Hóa Đơn";
+            dgvDanhSach.Columns["NgayLap"].HeaderText = "Ngày Lập";
+            dgvDanhSach.Columns["TenNhanVien"].HeaderText = "Tên Nhân Viên";
+            dgvDanhSach.Columns["TrangThai"].HeaderText = "Trạng Thái";
+            dgvDanhSach.Columns["TenKhachHang"].HeaderText = "Tên Khách Hàng";
+            dgvDanhSach.Columns["TenKhuyenMai"].HeaderText = "Tên Khuyến Mãi";
+            dgvDanhSach.Columns["TongTien"].HeaderText = "Tổng Tiền";
         }
         private void HoaDon_Load(object sender, EventArgs e)
         {
@@ -70,7 +85,7 @@ namespace Assignment_DAMAU.GUI
         {
             if (e.RowIndex >= 0)
             {
-                string maHD = dgvDanhSach.Rows[e.RowIndex].Cells["MA_HOADON"].Value.ToString();
+                string maHD = dgvDanhSach.Rows[e.RowIndex].Cells["MaHoaDon"].Value.ToString();
                 var hd = db.HOADONs.FirstOrDefault(s => s.MA_HOADON == maHD);
                 txtMaHD.Text = hd.MA_HOADON;
                 dtpNgayLap.Value = DateTime.Parse(hd.NGAYLAP.ToString());
@@ -116,13 +131,18 @@ namespace Assignment_DAMAU.GUI
                 dgvGioHang.DataSource = db.HOADONCHITIETs.Include(x => x.HOADON)
                 .Include(x => x.SACH).Where(s => s.MA_HOADON == maHD).Select(s => new
                 {
-                    s.HOADON.MA_HOADON,
-                    s.SACH.TEN_SACH,
-                    s.SOLUONG,
-                    s.SACH.GIA,
-                    THANHTIEN = s.DONGIA 
+                    MaHoaDon = s.HOADON.MA_HOADON,
+                    TenSach = s.SACH.TEN_SACH,
+                    SoLuong = s.SOLUONG,
+                    Gia = s.SACH.GIA,
+                    ThanhTien = s.DONGIA
                 }).ToList();
 
+                dgvGioHang.Columns["MaHoaDon"].HeaderText = "Mã Hóa Đơn";
+                dgvGioHang.Columns["TenSach"].HeaderText = "Tên Sách";
+                dgvGioHang.Columns["SoLuong"].HeaderText = "Số Lượng";
+                dgvGioHang.Columns["Gia"].HeaderText = "Giá";
+                dgvGioHang.Columns["ThanhTien"].HeaderText = "Thành Tiền";
             }
         }
         private void Xoa()
@@ -133,6 +153,9 @@ namespace Assignment_DAMAU.GUI
             dtpNgayLap.Value = DateTime.Now;
             cboNhanVien.SelectedIndex = -1;
             txtTrangThai.Clear();
+            txtVoucher.Clear();
+            txtDaGiam.Clear();
+            txtTongTien.Clear();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -190,8 +213,8 @@ namespace Assignment_DAMAU.GUI
         {
             if (e.RowIndex >= 0)
             {
-                string mahd = dgvGioHang.Rows[e.RowIndex].Cells["MA_HOADON"].Value.ToString();
-                string tensach = dgvGioHang.Rows[e.RowIndex].Cells["TEN_SACH"].Value.ToString();
+                string mahd = dgvGioHang.Rows[e.RowIndex].Cells["MaHoaDon"].Value.ToString();
+                string tensach = dgvGioHang.Rows[e.RowIndex].Cells["TenSach"].Value.ToString();
 
                 var sach = db.SACHes.FirstOrDefault(s => s.TEN_SACH == tensach);
                 if (sach != null)
@@ -217,16 +240,23 @@ namespace Assignment_DAMAU.GUI
                 .Include(s => s.KHUYENMAI)
                 .Select(s => new
                 {
-                    s.MA_HOADON,
-                    s.NGAYLAP,
-                    TENNHANVIEN = s.NHANVIEN.HO + " " + s.NHANVIEN.TEN,
-                    TRANGTHAI = (s.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán",
-                    TENKHACHHANG = s.KHACHHANG.HOTEN,
-                    TENKHUYENMAI = s.KHUYENMAI.TEN_KHUYENMAI,
-                    TONGTIEN = s.TONGTIEN
+                    MaHoaDon = s.MA_HOADON,
+                    NgayLap = s.NGAYLAP,
+                    TenNhanVien = s.NHANVIEN.HO + " " + s.NHANVIEN.TEN,
+                    TrangThai = (s.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán",
+                    TenKhachHang = s.KHACHHANG.HOTEN,
+                    TenKhuyenMai = s.KHUYENMAI.TEN_KHUYENMAI,
+                    TongTien = s.TONGTIEN
                 }).ToList();
 
             dgvDanhSach.DataSource = dsHoaDon;
+            dgvDanhSach.Columns["MaHoaDon"].HeaderText = "Mã Hóa Đơn";
+            dgvDanhSach.Columns["NgayLap"].HeaderText = "Ngày Lập";
+            dgvDanhSach.Columns["TenNhanVien"].HeaderText = "Tên Nhân Viên";
+            dgvDanhSach.Columns["TrangThai"].HeaderText = "Trạng Thái";
+            dgvDanhSach.Columns["TenKhachHang"].HeaderText = "Tên Khách Hàng";
+            dgvDanhSach.Columns["TenKhuyenMai"].HeaderText = "Tên Khuyến Mãi";
+            dgvDanhSach.Columns["TongTien"].HeaderText = "Tổng Tiền";
         }
 
         private void txtSDTKhach_TextChanged(object sender, EventArgs e)
@@ -283,16 +313,25 @@ namespace Assignment_DAMAU.GUI
                 .Include(h => h.KHUYENMAI)
                 .Select(h => new
                 {
-                    h.MA_HOADON,
-                    h.NGAYLAP,
-                    TENNHANVIEN = h.NHANVIEN.HO + " " + h.NHANVIEN.TEN,
-                    TRANGTHAI = (h.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán",
-                    TENKHACHHANG = h.KHACHHANG.HOTEN,
-                    TENKHUYENMAI = h.KHUYENMAI.TEN_KHUYENMAI,
-                    TONGTIEN = h.TONGTIEN
+                    MaHoaDon = h.MA_HOADON,
+                    NgayLap = h.NGAYLAP,
+                    TenNhanVien = h.NHANVIEN.HO + " " + h.NHANVIEN.TEN,
+                    TrangThai = (h.TRANGTHAI == false) ? "Chưa thanh toán" : "Đã thanh toán",
+                    TenKhachHang = h.KHACHHANG.HOTEN,
+                    TenKhuyenMai = h.KHUYENMAI.TEN_KHUYENMAI,
+                    TongTien = h.TONGTIEN
                 }).ToList();
 
             dgvDanhSach.DataSource = hoaDonNhanVien;
+
+
+            dgvDanhSach.Columns["MaHoaDon"].HeaderText = "Mã Hóa Đơn";
+            dgvDanhSach.Columns["NgayLap"].HeaderText = "Ngày Lập";
+            dgvDanhSach.Columns["TenNhanVien"].HeaderText = "Tên Nhân Viên";
+            dgvDanhSach.Columns["TrangThai"].HeaderText = "Trạng Thái";
+            dgvDanhSach.Columns["TenKhachHang"].HeaderText = "Tên Khách Hàng";
+            dgvDanhSach.Columns["TenKhuyenMai"].HeaderText = "Tên Khuyến Mãi";
+            dgvDanhSach.Columns["TongTien"].HeaderText = "Tổng Tiền";
         }
     }
 }

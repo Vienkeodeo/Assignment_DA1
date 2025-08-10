@@ -173,16 +173,17 @@
             // 
             // dtpKetThuc
             // 
-            this.dtpKetThuc.Location = new System.Drawing.Point(608, 117);
+            this.dtpKetThuc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpKetThuc.Location = new System.Drawing.Point(460, 116);
             this.dtpKetThuc.Margin = new System.Windows.Forms.Padding(4);
             this.dtpKetThuc.Name = "dtpKetThuc";
-            this.dtpKetThuc.Size = new System.Drawing.Size(265, 22);
+            this.dtpKetThuc.Size = new System.Drawing.Size(161, 22);
             this.dtpKetThuc.TabIndex = 14;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(479, 119);
+            this.label1.Location = new System.Drawing.Point(356, 121);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 16);
@@ -191,10 +192,11 @@
             // 
             // dtpBatDau
             // 
-            this.dtpBatDau.Location = new System.Drawing.Point(165, 117);
+            this.dtpBatDau.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBatDau.Location = new System.Drawing.Point(131, 117);
             this.dtpBatDau.Margin = new System.Windows.Forms.Padding(4);
             this.dtpBatDau.Name = "dtpBatDau";
-            this.dtpBatDau.Size = new System.Drawing.Size(265, 22);
+            this.dtpBatDau.Size = new System.Drawing.Size(161, 22);
             this.dtpBatDau.TabIndex = 12;
             // 
             // txtPhanTram
@@ -209,7 +211,7 @@
             // txtTen
             // 
             this.txtTen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTen.Location = new System.Drawing.Point(472, 49);
+            this.txtTen.Location = new System.Drawing.Point(460, 49);
             this.txtTen.Margin = new System.Windows.Forms.Padding(4);
             this.txtTen.Name = "txtTen";
             this.txtTen.Size = new System.Drawing.Size(161, 22);
@@ -237,7 +239,7 @@
             // lblTen
             // 
             this.lblTen.AutoSize = true;
-            this.lblTen.Location = new System.Drawing.Point(341, 53);
+            this.lblTen.Location = new System.Drawing.Point(356, 53);
             this.lblTen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTen.Name = "lblTen";
             this.lblTen.Size = new System.Drawing.Size(82, 16);
@@ -247,7 +249,7 @@
             // lblTacGia
             // 
             this.lblTacGia.AutoSize = true;
-            this.lblTacGia.Location = new System.Drawing.Point(36, 119);
+            this.lblTacGia.Location = new System.Drawing.Point(25, 122);
             this.lblTacGia.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTacGia.Name = "lblTacGia";
             this.lblTacGia.Size = new System.Drawing.Size(88, 16);

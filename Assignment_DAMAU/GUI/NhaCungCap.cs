@@ -28,6 +28,11 @@ namespace Assignment_DAMAU.GUI
                 n.SDT
             }).ToList();
             dgvDanhSach.DataSource = dsNCC;
+
+            dgvDanhSach.Columns["MA_NHACUNGCAP"].HeaderText = "Mã NCC";
+            dgvDanhSach.Columns["TEN_NHACUNGCAP"].HeaderText = "Tên NCC";
+            dgvDanhSach.Columns["DIACHI"].HeaderText = "Địa chỉ";
+            dgvDanhSach.Columns["SDT"].HeaderText = "Số điện thoại";
         }
         public void Xoa()
         {

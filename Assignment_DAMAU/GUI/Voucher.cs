@@ -20,8 +20,21 @@ namespace Assignment_DAMAU.GUI
         }
         public void LoadData()
         {
-            var dsVoucher = db.KHUYENMAIs.ToList();
+            var dsVoucher = db.KHUYENMAIs.Select(v => new
+            {
+                v.MA_KHUYENMAI,
+                v.TEN_KHUYENMAI,
+                v.PHANTRAMGIAM,
+                v.NGAYBATDAU,
+                v.NGAYKETTHUC
+            }).ToList();
             dgvDanhSach.DataSource = dsVoucher;
+
+            dgvDanhSach.Columns["MA_KHUYENMAI"].HeaderText = "Mã khuyến mãi";
+            dgvDanhSach.Columns["TEN_KHUYENMAI"].HeaderText = "Tên khuyến mãi";
+            dgvDanhSach.Columns["PHAMTRAMGIAM"].HeaderText = "Phần trăm giảm";
+            dgvDanhSach.Columns["NGAYBATDAU"].HeaderText = "Ngày bắt đầu";
+            dgvDanhSach.Columns["NGAYKETTHUC"].HeaderText = "Ngày kết thúc";
         }
         private void Voucher_Load(object sender, EventArgs e)
         {

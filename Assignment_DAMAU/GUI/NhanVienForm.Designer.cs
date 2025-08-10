@@ -228,7 +228,7 @@
             // lblDiaChi
             // 
             this.lblDiaChi.AutoSize = true;
-            this.lblDiaChi.Location = new System.Drawing.Point(1027, 55);
+            this.lblDiaChi.Location = new System.Drawing.Point(1038, 55);
             this.lblDiaChi.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDiaChi.Name = "lblDiaChi";
             this.lblDiaChi.Size = new System.Drawing.Size(47, 16);
@@ -316,7 +316,7 @@
             this.lblNam.Name = "lblNam";
             this.lblNam.Size = new System.Drawing.Size(85, 16);
             this.lblNam.TabIndex = 3;
-            this.lblNam.Text = "Số diện thoại";
+            this.lblNam.Text = "Số điện thoại";
             // 
             // lblTen
             // 

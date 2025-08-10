@@ -50,14 +50,24 @@ namespace Assignment_DAMAU.GUI
                                               .Where(s => s.TEN_SACH.Contains(txtTimKiem.Text))
                                               .Select(s => new
                                               {
-                                                  s.MA_SACH,
-                                                  s.TEN_SACH,
-                                                  s.GIA,
-                                                  s.SOLUONGTON,
+                                                  MaSach = s.MA_SACH,
+                                                  TenSach = s.TEN_SACH,
+                                                  Gia = s.GIA,
+                                                  SoLuongTon = s.SOLUONGTON,
                                                   NXB = s.NXB.TEN_NXB,
-                                                  THELOAI = s.THELOAI.TEN_THELOAI,
-                                                  NHACUNGCAP = s.NHACUNGCAP.TEN_NHACUNGCAP
-                                              }).ToList();
+                                                  TheLoai = s.THELOAI.TEN_THELOAI,
+                                                  NhaCungCap = s.NHACUNGCAP.TEN_NHACUNGCAP
+                                              })
+                                              .ToList();
+
+            // Gán tiêu đề tiếng Việt
+            dgvDanhSach.Columns["MaSach"].HeaderText = "Mã Sách";
+            dgvDanhSach.Columns["TenSach"].HeaderText = "Tên Sách";
+            dgvDanhSach.Columns["Gia"].HeaderText = "Giá";
+            dgvDanhSach.Columns["SoLuongTon"].HeaderText = "Số Lượng Tồn";
+            dgvDanhSach.Columns["NXB"].HeaderText = "Nhà Xuất Bản";
+            dgvDanhSach.Columns["TheLoai"].HeaderText = "Thể Loại";
+            dgvDanhSach.Columns["NhaCungCap"].HeaderText = "Nhà Cung Cấp";
 
             var sach = db.SACHes.ToList();
             txtTenSach.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -102,7 +112,15 @@ namespace Assignment_DAMAU.GUI
                     sach.MA_THELOAI = cboTheLoai.SelectedValue.ToString();
                     sach.MA_NXB = cboNXB.SelectedValue.ToString();
                     sach.MA_NHACUNGCAP = cboNCC.SelectedValue.ToString();
-                    sach.SOLUONGTON = int.Parse(txtSoLuongTon.Text);
+                    if (!int.TryParse(txtSoLuongTon.Text, out _))
+                    {
+                        MessageBox.Show("Số lượng phải là số nguyên dương");
+                    }
+                    else
+                    {
+                        sach.SOLUONGTON = int.Parse(txtSoLuongTon.Text);
+                    }
+
                     sach.GIA = decimal.Parse(txtSoLuongTon.Text);
                     sach.ANH = ImageToByteArray(pbAnhSach);
 
@@ -131,33 +149,48 @@ namespace Assignment_DAMAU.GUI
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if (txtMaSach.Text != "")
+            if (string.IsNullOrWhiteSpace(txtMaSach.Text))
             {
-                var sach = db.SACHes.FirstOrDefault(s => s.MA_SACH == txtMaSach.Text);
-                if (sach != null)
-                {
-                    sach.TEN_SACH = txtTenSach.Text;
-                    sach.MA_THELOAI = cboTheLoai.SelectedValue.ToString();
-                    sach.MA_NXB = cboNXB.SelectedValue.ToString();
-                    sach.MA_NHACUNGCAP = cboNCC.SelectedValue.ToString();
-                    sach.SOLUONGTON = int.Parse(txtSoLuongTon.Text);
-                    sach.GIA = decimal.Parse(txtGia.Text);
-                    sach.ANH = ImageToByteArray(pbAnhSach);
+                MessageBox.Show("Vui lòng nhập mã sách cần cập nhật");
+                return;
+            }
 
+            // Validate số lượng tồn
+            if (string.IsNullOrWhiteSpace(txtSoLuongTon.Text))
+            {
+                MessageBox.Show("Vui lòng nhập số lượng tồn");
+                return;
+            }
+            if (!int.TryParse(txtSoLuongTon.Text, out int soLuongTon))
+            {
+                MessageBox.Show("Số lượng tồn phải là số nguyên");
+                return;
+            }
+            if (soLuongTon < 0)
+            {
+                MessageBox.Show("Số lượng tồn không được nhỏ hơn 0");
+                return;
+            }
 
-                    db.SaveChanges();
-                    LoadData();
-                    MessageBox.Show("Cập nhật sách thành công");
-                    Xoa();
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy mã sách để cập nhật");
-                }
+            var sach = db.SACHes.FirstOrDefault(s => s.MA_SACH == txtMaSach.Text);
+            if (sach != null)
+            {
+                sach.TEN_SACH = txtTenSach.Text;
+                sach.MA_THELOAI = cboTheLoai.SelectedValue.ToString();
+                sach.MA_NXB = cboNXB.SelectedValue.ToString();
+                sach.MA_NHACUNGCAP = cboNCC.SelectedValue.ToString();
+                sach.SOLUONGTON = soLuongTon;
+                sach.GIA = decimal.Parse(txtGia.Text);
+                sach.ANH = ImageToByteArray(pbAnhSach);
+
+                db.SaveChanges();
+                LoadData();
+                MessageBox.Show("Cập nhật sách thành công");
+                Xoa();
             }
             else
             {
-                MessageBox.Show("Vui lòng nhập mã sách cần cập nhật");
+                MessageBox.Show("Không tìm thấy mã sách để cập nhật");
             }
         }
 
@@ -212,7 +245,7 @@ namespace Assignment_DAMAU.GUI
         private void dgvDanhSach_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
-            {                string maSach = dgvDanhSach.Rows[e.RowIndex].Cells["MA_SACH"].Value.ToString();
+            {                string maSach = dgvDanhSach.Rows[e.RowIndex].Cells["MaSach"].Value.ToString();
                 var sach = db.SACHes.FirstOrDefault(s => s.MA_SACH == maSach);
                 if (sach != null)
                 {

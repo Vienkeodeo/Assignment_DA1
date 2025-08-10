@@ -16,8 +16,14 @@ namespace Assignment_DAMAU.GUI
         SACHEntities3 db = new SACHEntities3();
         public void LoadData()
         {
-            var dstg = db.TACGIAs.ToList();
+            var dstg = db.TACGIAs.Select(t => new
+            {
+                t.MA_TACGIA,
+                t.HOTEN
+            }).ToList();
             dgvDanhSach.DataSource = dstg;
+            dgvDanhSach.Columns["MA_TACGIA"].HeaderText = "Mã tác giả";
+            dgvDanhSach.Columns["HOTEN"].HeaderText = "Họ tên";
         }
         public void Xoa()
         {
