@@ -146,6 +146,7 @@
             this.dgvDanhSach.Name = "dgvDanhSach";
             this.dgvDanhSach.ReadOnly = true;
             this.dgvDanhSach.RowHeadersWidth = 51;
+            this.dgvDanhSach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDanhSach.Size = new System.Drawing.Size(764, 402);
             this.dgvDanhSach.TabIndex = 0;
             this.dgvDanhSach.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSach_CellClick);
@@ -399,6 +400,7 @@
             this.dgvGioHang.Margin = new System.Windows.Forms.Padding(4);
             this.dgvGioHang.Name = "dgvGioHang";
             this.dgvGioHang.RowHeadersWidth = 51;
+            this.dgvGioHang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGioHang.Size = new System.Drawing.Size(961, 546);
             this.dgvGioHang.TabIndex = 0;
             this.dgvGioHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGioHang_CellClick);

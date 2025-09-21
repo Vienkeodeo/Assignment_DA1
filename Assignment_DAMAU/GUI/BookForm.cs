@@ -112,16 +112,16 @@ namespace Assignment_DAMAU.GUI
                     sach.MA_THELOAI = cboTheLoai.SelectedValue.ToString();
                     sach.MA_NXB = cboNXB.SelectedValue.ToString();
                     sach.MA_NHACUNGCAP = cboNCC.SelectedValue.ToString();
-                    if (!int.TryParse(txtSoLuongTon.Text, out _))
+                    if (!int.TryParse(numericUpDown1.Text, out _))
                     {
                         MessageBox.Show("Số lượng phải là số nguyên dương");
                     }
                     else
                     {
-                        sach.SOLUONGTON = int.Parse(txtSoLuongTon.Text);
+                        sach.SOLUONGTON = int.Parse(numericUpDown1.Text);
                     }
 
-                    sach.GIA = decimal.Parse(txtSoLuongTon.Text);
+                    sach.GIA = decimal.Parse(numericUpDown1.Text);
                     sach.ANH = ImageToByteArray(pbAnhSach);
 
 
@@ -156,12 +156,12 @@ namespace Assignment_DAMAU.GUI
             }
 
             // Validate số lượng tồn
-            if (string.IsNullOrWhiteSpace(txtSoLuongTon.Text))
+            if (string.IsNullOrWhiteSpace(numericUpDown1.Text))
             {
                 MessageBox.Show("Vui lòng nhập số lượng tồn");
                 return;
             }
-            if (!int.TryParse(txtSoLuongTon.Text, out int soLuongTon))
+            if (!int.TryParse(numericUpDown1.Text, out int soLuongTon))
             {
                 MessageBox.Show("Số lượng tồn phải là số nguyên");
                 return;
@@ -230,7 +230,7 @@ namespace Assignment_DAMAU.GUI
         {
             txtMaSach.Clear();
             txtTenSach.Clear();
-            txtSoLuongTon.Clear();
+            numericUpDown1.ResetText();
             txtGia.Clear();
             cboTheLoai.SelectedIndex = -1;
             cboNXB.SelectedIndex = -1;
@@ -252,7 +252,7 @@ namespace Assignment_DAMAU.GUI
                     txtMaSach.Text = sach.MA_SACH;
                     txtTenSach.Text = sach.TEN_SACH;
                     txtGia.Text = sach.GIA.ToString();
-                    txtSoLuongTon.Text = sach.SOLUONGTON.ToString();
+                    numericUpDown1.Text = sach.SOLUONGTON.ToString();
 
                     cboNXB.SelectedValue = sach.MA_NXB;
                     cboTheLoai.SelectedValue = sach.MA_THELOAI;
@@ -326,33 +326,33 @@ namespace Assignment_DAMAU.GUI
 
         private void txtTenSach_TextChanged(object sender, EventArgs e)
         {
-            string tenSach = txtTenSach.Text.Trim();
+            //string tenSach = txtTenSach.Text.Trim();
 
-            if (!string.IsNullOrEmpty(tenSach))
-            {
-                var sach = db.SACHes.FirstOrDefault(s => s.TEN_SACH == tenSach);
-                if (sach != null)
-                {
-                    txtMaSach.Text = sach.MA_SACH;
-                    txtGia.Text = sach.GIA.ToString();
-                    txtSoLuongTon.Text = sach.SOLUONGTON.ToString();
+            //if (!string.IsNullOrEmpty(tenSach))
+            //{
+            //    var sach = db.SACHes.FirstOrDefault(s => s.TEN_SACH == tenSach);
+            //    if (sach != null)
+            //    {
+            //        txtMaSach.Text = sach.MA_SACH;
+            //        txtGia.Text = sach.GIA.ToString();
+            //        numericUpDown1.Text = sach.SOLUONGTON.ToString();
 
-                    cboTheLoai.SelectedValue = sach.MA_THELOAI;
-                    cboNXB.SelectedValue = sach.MA_NXB;
-                    cboNCC.SelectedValue = sach.MA_NHACUNGCAP;
+            //        cboTheLoai.SelectedValue = sach.MA_THELOAI;
+            //        cboNXB.SelectedValue = sach.MA_NXB;
+            //        cboNCC.SelectedValue = sach.MA_NHACUNGCAP;
 
-                    if (sach.ANH != null)
-                    {
-                        ByteArrayToImage(sach.ANH, pbAnhSach);
-                        txtDuongDanAnh.Text = "[Ảnh từ cơ sở dữ liệu]";
-                    }
-                    else
-                    {
-                        pbAnhSach.Image = null;
-                        txtDuongDanAnh.Clear();
-                    }
-                }
-            }
+            //        if (sach.ANH != null)
+            //        {
+            //            ByteArrayToImage(sach.ANH, pbAnhSach);
+            //            txtDuongDanAnh.Text = "[Ảnh từ cơ sở dữ liệu]";
+            //        }
+            //        else
+            //        {
+            //            pbAnhSach.Image = null;
+            //            txtDuongDanAnh.Clear();
+            //        }
+            //    }
+            //}
         }
     }
 }

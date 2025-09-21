@@ -44,7 +44,6 @@
             this.btnChonAnh = new System.Windows.Forms.Button();
             this.cboNCC = new System.Windows.Forms.ComboBox();
             this.cboNXB = new System.Windows.Forms.ComboBox();
-            this.txtSoLuongTon = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cboTheLoai = new System.Windows.Forms.ComboBox();
             this.txtTenSach = new System.Windows.Forms.TextBox();
@@ -58,12 +57,14 @@
             this.lblMa = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.pbAnhSach = new System.Windows.Forms.PictureBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grbBang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();
             this.grbThongTin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAnhSach)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnThoat
@@ -192,17 +193,18 @@
             this.dgvDanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgvDanhSach.Name = "dgvDanhSach";
             this.dgvDanhSach.RowHeadersWidth = 51;
+            this.dgvDanhSach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDanhSach.Size = new System.Drawing.Size(961, 309);
             this.dgvDanhSach.TabIndex = 0;
             this.dgvDanhSach.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSach_CellClick);
             // 
             // grbThongTin
             // 
+            this.grbThongTin.Controls.Add(this.numericUpDown1);
             this.grbThongTin.Controls.Add(this.txtDuongDanAnh);
             this.grbThongTin.Controls.Add(this.btnChonAnh);
             this.grbThongTin.Controls.Add(this.cboNCC);
             this.grbThongTin.Controls.Add(this.cboNXB);
-            this.grbThongTin.Controls.Add(this.txtSoLuongTon);
             this.grbThongTin.Controls.Add(this.label1);
             this.grbThongTin.Controls.Add(this.cboTheLoai);
             this.grbThongTin.Controls.Add(this.txtTenSach);
@@ -259,15 +261,6 @@
             this.cboNXB.Name = "cboNXB";
             this.cboNXB.Size = new System.Drawing.Size(160, 24);
             this.cboNXB.TabIndex = 15;
-            // 
-            // txtSoLuongTon
-            // 
-            this.txtSoLuongTon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSoLuongTon.Location = new System.Drawing.Point(131, 193);
-            this.txtSoLuongTon.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSoLuongTon.Name = "txtSoLuongTon";
-            this.txtSoLuongTon.Size = new System.Drawing.Size(161, 22);
-            this.txtSoLuongTon.TabIndex = 14;
             // 
             // label1
             // 
@@ -398,6 +391,20 @@
             this.pbAnhSach.TabIndex = 17;
             this.pbAnhSach.TabStop = false;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDown1.Location = new System.Drawing.Point(131, 193);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(161, 22);
+            this.numericUpDown1.TabIndex = 19;
+            this.numericUpDown1.ThousandsSeparator = true;
+            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -422,6 +429,7 @@
             this.grbThongTin.ResumeLayout(false);
             this.grbThongTin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAnhSach)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -449,7 +457,6 @@
         private System.Windows.Forms.Label lblTen;
         private System.Windows.Forms.Label lblGia;
         private System.Windows.Forms.Label lblMa;
-        private System.Windows.Forms.TextBox txtSoLuongTon;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboNCC;
         private System.Windows.Forms.ComboBox cboNXB;
@@ -457,5 +464,6 @@
         private System.Windows.Forms.PictureBox pbAnhSach;
         private System.Windows.Forms.Button btnChonAnh;
         private System.Windows.Forms.TextBox txtDuongDanAnh;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

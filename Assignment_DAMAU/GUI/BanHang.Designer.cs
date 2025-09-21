@@ -99,6 +99,7 @@
             this.dgvGioHang.Margin = new System.Windows.Forms.Padding(4);
             this.dgvGioHang.Name = "dgvGioHang";
             this.dgvGioHang.RowHeadersWidth = 51;
+            this.dgvGioHang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGioHang.Size = new System.Drawing.Size(1657, 549);
             this.dgvGioHang.TabIndex = 0;
             // 
